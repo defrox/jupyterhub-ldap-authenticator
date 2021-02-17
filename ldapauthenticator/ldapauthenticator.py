@@ -518,7 +518,7 @@ class LDAPAuthenticator(Authenticator):
             conn.response = [search_ref for search_ref in conn.response if 'type' in search_ref and search_ref['type'] != 'searchResRef']                       
 
             # handle abnormal search results
-            if (not conn.response or len(conn.response) > 1) and not active_directory:            
+            if not conn.response or len(conn.response) > 1:            
                 self.log.error(("LDAP search '{}' returned {} results. " +
                                 "Please narrow search to 1 result").format(
                                     auth_user_search_filter, len(conn.response)))
